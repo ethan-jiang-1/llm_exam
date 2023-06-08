@@ -2,8 +2,16 @@
 import openai
 import os
 from dotenv import load_dotenv
+import logging
+import sys
+
 
 load_dotenv()
+
+logger = logging.getLogger("openai")
+logger.setLevel(logging.DEBUG)
+logger.addHandler(logging.StreamHandler(sys.stdout))
+
 
 openai.api_key = os.environ["OPENAPI_KEY"]
 
@@ -14,6 +22,7 @@ def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0,
         temperature=temperature, 
         max_tokens=max_tokens, 
     )
+    print(response)
     return response.choices[0].message["content"]
 
 delimiter = "####"
