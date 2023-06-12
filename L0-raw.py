@@ -13,15 +13,21 @@ Specs: Approx. weight: 1 lb.1 oz. per pair. \\n\\n
 Construction: Soft canvas material for a broken-in feel and look. Comfortable EVA innersole with Cleansport NXT® antimicrobial odor control. Vintage hunt, fish and camping motif on innersole. Moderate arch contour of innersole. EVA foam midsole for cushioning and support. Chain-tread-inspired molded rubber outsole with modified chain-tread pattern. Imported. \\n\\n
 Questions? Please contact us for any inquiries.\" metadata={'source': 'OutdoorClothingCatalog_1000.csv', 'row': 0}\n<End Document>"""
 
-raw_prompt = raw_prompt.replace("\\\\", "\\")
-raw_prompt = raw_prompt.replace("\\n", "\n")
-print()
-print(raw_prompt)
-print()
+def call_as_llm(raw_prompt):
+    raw_prompt = raw_prompt.replace("\\\\", "\\")
+    raw_prompt = raw_prompt.replace("\\n", "\n")
+    print()
+    print(raw_prompt)
+    print()
 
-llm = ChatOpenAI(temperature = 0.0)
+    llm = ChatOpenAI(temperature = 0.0)
 
-response = llm.call_as_llm(raw_prompt) 
-print()
-print("response")
-print(response)
+    response = llm.call_as_llm(raw_prompt) 
+    print()
+    print("response")
+    print(response)
+    return response
+
+
+if __name__ == "__main__":
+    response = call_as_llm(raw_prompt)
