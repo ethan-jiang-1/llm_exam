@@ -104,7 +104,7 @@ def complete_stepbystep_retrievalqa():
 
 
 if __name__ == "__main__":
-    #load_df()
+    load_df()
     #index_and_query()
     #compelte_stepbystep_raw()
     complete_stepbystep_retrievalqa()

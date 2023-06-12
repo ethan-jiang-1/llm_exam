@@ -123,5 +123,5 @@ def ensure_questions_answered_correctly():
 
 if __name__ == "__main__":
     #do_gen_questions_on_docs()
-    #ask_questions_from_examples()
-    ensure_questions_answered_correctly()
+    ask_questions_from_examples()
+    #ensure_questions_answered_correctly()

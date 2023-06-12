@@ -1,0 +1,29 @@
+System: 
+Answer the following questions as best you can. You have access to the following tools:\n\n
+Calculator: Useful for when you need to answer questions about math.\n
+Wikipedia: A wrapper around Wikipedia. Useful for when you need to answer general questions about people, places, companies, facts, historical events, or other subjects. Input should be a search query.\n\n
+
+The way you use the tools is by specifying a json blob.\n
+Specifically, this json should have a `action` key (with the name of the tool to use) and a `action_input` key (with the input to the tool going here).\n\n
+The only values that should be in the \"action\" field are: Calculator, Wikipedia\n\n
+
+The $JSON_BLOB should only contain a SINGLE action, do NOT return a list of multiple actions. Here is an example of a valid $JSON_BLOB:\n\n
+```\n{\n  \"action\": $TOOL_NAME,\n  \"action_input\": $INPUT\n}\n```\n\n
+ALWAYS use the following format:\n\n
+Question: the input question you must answer\n
+Thought: you should always think about what to do\n
+Action:\n
+```\n$JSON_BLOB\n```\n
+
+Observation: the result of the action\n
+... (this Thought/Action/Observation can repeat N times)\n
+Thought: I now know the final answer\n
+Final Answer: the final answer to the original input question\n\n
+Begin! Reminder to always use the exact characters `Final Answer` when responding.\n
+
+Human: What is the 25% of 300?
+
+
+ "text": "Thought: We need to calculate 25% of 300, which means we need to multiply 300 by 0.25.\n\n
+ Action:\n
+ ```\n{\n  \"action\": \"Calculator\",\n  \"action_input\": \"300*0.25\"\n}\n```\n\n",

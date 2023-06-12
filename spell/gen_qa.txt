@@ -1,0 +1,10 @@
+Human: You are a teacher coming up with questions to ask on a quiz. \n
+Given the following document, please generate a question and answer based on that document.\n\n
+Example Format:\n<Begin Document>\n...\n<End Document>\n
+QUESTION: question here\nANSWER: answer here\n\n
+
+These questions should be detailed and be based explicitly on information in the document. Begin!\n\n
+<Begin Document>\n
+page_content=\": 0\\nname: Women's Campside Oxfords\\ndescription: This ultracomfortable lace-to-toe Oxford boasts a super-soft canvas, thick cushioning, and quality construction for a broken-in feel from the first time you put them on. \\n\\nSize &amp; Fit: Order regular shoe size. For half sizes not offered, order up to next whole size. \\n\\nSpecs: Approx. weight: 1 lb.1 oz. per pair. \\n\\nConstruction: Soft canvas material for a broken-in feel and look. Comfortable EVA innersole with Cleansport NXT® antimicrobial odor control. Vintage hunt, fish and camping motif on innersole. Moderate arch contour of innersole. EVA foam midsole for cushioning and support. Chain-tread-inspired molded rubber outsole with modified chain-tread pattern. Imported. \\n\\nQuestions? Please contact us for any inquiries.\" 
+metadata={'source': 'OutdoorClothingCatalog_1000.csv', 'row': 0}\n
+<End Document>
