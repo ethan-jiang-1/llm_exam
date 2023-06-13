@@ -43,6 +43,7 @@ def do_answer1():
 def do_answer2():
     from langchain.agents import tool
     from datetime import date 
+    langchain.debug = True 
 
     @tool
     def time(text: str) -> str:
@@ -66,6 +67,7 @@ def do_answer2():
     except: # noqa
         print("exception on external access")
     print(result)
+    langchain.debug = False
 
 if __name__ == "__main__":
     #do_answer1()
