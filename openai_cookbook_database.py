@@ -140,7 +140,7 @@ def execute_function_call(message):
         results = f"Error: function {message['function_call']['name']} does not exist"
     return results
 
-def do_query_database():
+def do_query_database_0():
     messages = []
     messages.append({"role": "system", "content": "Answer user questions by generating SQL queries against the Chinook Music Database."})
     messages.append({"role": "user", "content": "Hi, who are the top 5 artists by number of tracks?"})
@@ -155,6 +155,19 @@ def do_query_database():
         messages.append({"role": "function", "name": assistant_message["function_call"]["name"], "content": results})
     pretty_print_conversation(messages)
 
+def do_query_database_1():
+    messages = []
+    messages.append({"role": "user", "content": "What is the name of the album with the most tracks?"})
+    chat_response = chat_completion_request(messages, functions)
+    assistant_message = chat_response.json()["choices"][0]["message"]
+    messages.append(assistant_message)
+    if assistant_message.get("function_call"):
+        results = execute_function_call(assistant_message)
+        messages.append({"role": "function", "content": results, "name": assistant_message["function_call"]["name"]})
+    pretty_print_conversation(messages)
+
 
 if __name__ == "__main__":
-    do_query_database()
+    #do_query_database_0()
+    do_query_database_1()
+
