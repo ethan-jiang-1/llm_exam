@@ -170,4 +170,3 @@ def do_query_database_1():
 if __name__ == "__main__":
     #do_query_database_0()
     do_query_database_1()
-
