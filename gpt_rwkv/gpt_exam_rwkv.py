@@ -5,6 +5,7 @@ import os
 import logging
 import sys
 
+os.environ["OPENAPI_KEY"] = ""
 
 #load_dotenv()
 
@@ -30,7 +31,7 @@ delimiter = "####"
 system_message = """
 """
 user_message = """\
-could you introduce yourself"""
+Aesthetics deals with objects that are_____."""
 
 
 def exam1():
