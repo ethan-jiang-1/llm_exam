@@ -163,3 +163,4 @@ cython_debug/
 .env_new
 .env_old
 llama_index/
+llama_index/examples/paul_graham_essay/pss
