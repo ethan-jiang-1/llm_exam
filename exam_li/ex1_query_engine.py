@@ -27,15 +27,17 @@ def get_index():
     index = load_index_from_storage(storage_context)
     return index 
 
-#enable_debug()
-index = get_index()
 
-query_engine = index.as_query_engine()
-response = query_engine.query("What did the author do growing up?")
-print()
-print(response)
-print()
+if __name__ == "__main__":
+    #enable_debug()
+    index = get_index()
 
-# chat_engine = index.as_chat_engine()
-# response = chat_engine.query("What did the author do growing up?")
-# print(response)
+    query_engine = index.as_query_engine()
+    response = query_engine.query("What did the author do growing up?")
+    print()
+    print(response)
+    print()
+
+    # chat_engine = index.as_chat_engine()
+    # response = chat_engine.query("What did the author do growing up?")
+    # print(response)

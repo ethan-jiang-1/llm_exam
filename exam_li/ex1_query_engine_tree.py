@@ -32,19 +32,18 @@ if __name__ == "__main__":
     #enable_debug()
     index = get_index()
 
-    # query_engine = index.as_query_engine()
-    # response = query_engine.query("What did the author do growing up?")
-    # print()
+    query_engine = index.as_query_engine(response_mode='tree_summarize')
+    response = query_engine.query("What did the author do growing up?")
+    print()
+    print(response)
+    print()
+
+    query_engine = index.as_query_engine()
+    response = query_engine.query("What did the author do growing up?")
+    print()
+    print(response)
+    print()
+
+    # chat_engine = index.as_chat_engine()
+    # response = chat_engine.query("What did the author do growing up?")
     # print(response)
-    # print()
-
-    query_engine = index.as_chat_engine()
-    response = query_engine.chat("What did the author do growing up?")
-    print()
-    print(response)
-    print()
-
-    response = query_engine.chat("Oh interesting, tell me more.")
-    print()
-    print(response)
-    print()
