@@ -66,16 +66,75 @@ def connect_index_from_pincone():
     return None
 
 
-if __name__ == "__main__":
-    enable_debug()
+def get_pincone_index():
+    #enable_debug()
     init_pincone()
     index = connect_index_from_pincone()
     if index is None:
         index = create_index_in_pincone()
     print(index)
+    return index
 
-    query_engine = index.as_query_engine()
-    response = query_engine.query("What did the author do growing up?")
+
+def get_default_query_engine(index):
+    return index.as_query_engine()
+
+
+def get_cust1_query_engine(index):
+    from llama_index.vector_stores.types import ExactMatchFilter, MetadataFilters
+    query_engine = index.as_query_engine(
+        similarity_top_k=3,
+        vector_store_query_mode="default",
+        filters=MetadataFilters(
+            filters=[
+                ExactMatchFilter(key="name", value="paul graham"),
+            ]
+        ),
+        alpha=None,
+        doc_ids=None,
+    )
+    return query_engine
+
+def get_cust2_query_engine(index):
+    from llama_index.vector_stores.types import ExactMatchFilter, MetadataFilters
+    from llama_index import get_response_synthesizer
+    from llama_index.indices.vector_store.retrievers import VectorIndexRetriever
+    from llama_index.query_engine.retriever_query_engine import RetrieverQueryEngine
+
+    # build retriever
+    retriever = VectorIndexRetriever(
+        index=index,
+        similarity_top_k=3,
+        vector_store_query_mode="default",
+        filters=[ExactMatchFilter(key="name", value="paul graham")],
+        alpha=None,
+        doc_ids=None,
+    )
+
+    # build query engine
+    query_engine = RetrieverQueryEngine(
+        retriever=retriever, response_synthesizer=get_response_synthesizer()
+    )
+    return query_engine
+
+
+if __name__ == "__main__":
+    index = get_pincone_index()
+
+    default_query_engine = get_default_query_engine(index)
+    response = default_query_engine.query("What did the author do growing up?")
     print()
     print(response)
     print()
+
+    cust1_query_engine = get_cust1_query_engine(index)
+    response = cust1_query_engine.query("What did the author do growing up?")
+    print()
+    print(response)
+    print()
+
+    # cust2_query_engine = get_cust2_query_engine(index)
+    # response = cust2_query_engine.query("What did the author do growing up?")
+    # print()
+    # print(response)
+    # print()
