@@ -21,19 +21,19 @@ def get_documents():
     documents = SimpleDirectoryReader(raw_data).load_data()
     return documents
 
-def get_index():
-    #documents = SimpleDirectoryReader('data').load_data()
-    pss_data = "/root/llm_exam/llama_index/examples/paul_graham_essay/pss"
-    if not os.path.isdir(pss_data):
-        documents = get_documents()
-        index = VectorStoreIndex.from_documents(documents)
-        index.storage_context.persist(persist_dir=pss_data)
+# def get_index():
+#     #documents = SimpleDirectoryReader('data').load_data()
+#     pss_data = "/root/llm_exam/llama_index/examples/paul_graham_essay/pss"
+#     if not os.path.isdir(pss_data):
+#         documents = get_documents()
+#         index = VectorStoreIndex.from_documents(documents)
+#         index.storage_context.persist(persist_dir=pss_data)
 
-    # rebuild storage context
-    storage_context = StorageContext.from_defaults(persist_dir=pss_data)
-    # load index
-    index = load_index_from_storage(storage_context)
-    return index 
+#     # rebuild storage context
+#     storage_context = StorageContext.from_defaults(persist_dir=pss_data)
+#     # load index
+#     index = load_index_from_storage(storage_context)
+#     return index 
 
 def init_pincone():
    ret = pinecone.init(api_key="3ffbc753-2b2b-47a8-9350-a470b1fe5691", environment="asia-southeast1-gcp-free")
@@ -67,6 +67,7 @@ def connect_index_from_pincone():
 
 
 if __name__ == "__main__":
+    enable_debug()
     init_pincone()
     index = connect_index_from_pincone()
     if index is None:
@@ -75,4 +76,6 @@ if __name__ == "__main__":
 
     query_engine = index.as_query_engine()
     response = query_engine.query("What did the author do growing up?")
+    print()
     print(response)
+    print()
